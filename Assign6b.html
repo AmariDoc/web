@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory</title>
+    <!-- CSS and other imports -->
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="table"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="home-button">
+                <button class="btn btn-secondary" onclick="window.location.href='InventoryAdd.html'">Add Inventory</button>
+            </div>
+        </div>
+    </div>
+    <h1 class="pages-text-center">Inventory Screen</h1>
+
+   
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script>
+        new gridjs.Grid({
+            search: true,
+            sort: true,
+            pagination: true,
+            fixedheader: true,
+            height: "90%",
+            columns: [
+                { name: "id", width: "100px" },
+                { name: "NBAPlayer", width: "100px" },
+                { name: "NBATeam", width: "100px" }
+            ],
+            server: {
+                url: "http://localhost:3000/NBA"
+            }
+        }).render(document.getElementById('table'));
+    </script>
+
+    <script>
+        document.getElementById('addInventoryForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const formData = {
+                id: document.getElementById('id').value,
+                NBAPlayer: document.getElementById('NBAPlayer').value,
+                NBATeam: document.getElementById('NBATeam').value
+            };
+            
+            fetch('http://localhost:3000/NBA', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Record has been saved.');
+                window.location.href = 'Inventory.html';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function populateDropdown() {
+            fetch('http://localhost:3000/NBA') 
+            .then(response => response.json())
+            .then(data => {
+                const dropdown = document.getElementById('dropdown');
+                data.forEach(value => {
+                    const option = document.createElement('option');
+                    option.value = value;
+                    option.textContent = value;
+                    dropdown.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        populateDropdown();
+    </script>
+</body>
+</html>
