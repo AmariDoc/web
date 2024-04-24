@@ -1,5 +1,5 @@
 <html>
-    <title>Inventory</title>
+    <title>NBA Add</title>
 
 <head>
 
@@ -17,21 +17,39 @@
 </head>
 <body>
 
-    <div class="container">
-        <div id="table"></div>
-        <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
-        <script src="./js/getInventory.js"></script>
-        </div>
+   <form class="form">
+    <div class="form-group">
+        <label for="id"><b>ID:</b></b></label>
+            <input name="id"  id="id" type="text" class="form-control"  placeholder="Input ID">
+    </div>
+
+    <div class="form-group">
+        <label for="Player"><b>Player:</b></label>
+            <input name="Player"  id="id" type="text" class="form-control"  placeholder="Input Player">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="Team"><b>Team:</b></label>
+        <input name="Team"  id="id" type="text" class="form-control"  placeholder="Input Team">
+</div>
+
+<div class="form-group">
+    <button  type="submit"   class="btm btm-primary btn-lg  btn-block"></button>
+</div>
+
+   </form>
+
     <div class="container-fluid">
         <div class="row">
         <div class="home-button">
-        <button class="btn btn-secondary" onclick="window.location.href='InventoryAdd.html'">Add Inventory</button>
+        <button class="btn btn-secondary" onclick="window.location.href='nba.html'">Home</button>
         </div>
         </div>
         </div>
 
        
-        <h1 class="pages-text-center">Inventory Screen</h1>
+        <h1 class="pages-text-center">NBA Add Screen</h1>
 </body>
 
 <!-- CDN -->
@@ -45,6 +63,9 @@
 <script src="./js/jquery.toaster.js"></script>
 
 
-<script src="./js/getInventory.js"></script>
+<script src="./js/getnba.js"></script>
+
+<!--post api-->
+<script src=""
 
 </html>
